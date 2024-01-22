@@ -15,8 +15,8 @@ node {
     // Code vulnerabily scan with OWASP ZAP TOP 10
 
      stage('Dependancy-Vuln check OWASP') {
-        
-    dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWAP-ZAP-DP'
+
+    dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWASP-ZAP-DP'
   }
 
 }
