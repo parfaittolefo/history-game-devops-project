@@ -1,11 +1,23 @@
 node {
+    //Code pull from github
   stage('SCM') {
     checkout scm
   }
+
+    //code analysis with sonarqube
   stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv() {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
+    
+    // Code vulnerabily scan with OWASP ZAP TOP 10
+
+     stage('Dependancy-Vuln check OWASP') {
+        
+    dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWAP-ZAP-DP'
+  }
+
 }
+
