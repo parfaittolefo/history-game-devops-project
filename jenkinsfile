@@ -22,9 +22,9 @@ node {
 
 //Run test 
 
-  /*stage('Run Test'){
+  stage('Run Test'){
     bat script: 'mvn test -Dbrowser=localchrome'
-  }*/
+  }
 
 
 //Publish report
