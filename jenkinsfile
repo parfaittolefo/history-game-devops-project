@@ -22,16 +22,11 @@ node {
 
 //Run test 
 
-  stage('Run Test'){
-    bat script: 'mvn test -Dbrowser=localchrome'
-  }
+ stage('Run Test'){
+    sh 'mvn test -Dbrowser=localchrome'
+}
 
 
 //Publish report
 
 }
-
-
-
-
-
