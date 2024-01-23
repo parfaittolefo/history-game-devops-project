@@ -1,9 +1,7 @@
 node {
     //Code pull from github
   stage('SCM (Get the source code from Git)') {
-   steps{
-     checkout scm
-   }
+    checkout scm
   }
 
     //code analysis with sonarqube
@@ -17,26 +15,19 @@ node {
     // Code vulnerabily scan with OWASP ZAP TOP 10
 
      stage('Dependancy-Vuln check OWASP') {
-      steps
-     
-         {
-          dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWASP-ZAP-DP'
-      }
+
+    dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWASP-ZAP-DP'
   }
 
 
+//Run test 
 
-  //Run test 
-
-/*stage('Run Test'){
-
-  steps{
+  stage('Run Test'){
     bat script: 'mvn test -Dbrowser=localchrome'
-  }*/
+  }
 
 
 //Publish report
-
 
 }
 
