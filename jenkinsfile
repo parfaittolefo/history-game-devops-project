@@ -44,7 +44,6 @@ node {
             results: [[path: 'tests/_output/allure-results']]
         ])
     }
-
 }
 
 
