@@ -22,8 +22,8 @@ node {
 
 //Run test 
 
- stage('Backend tests') {
-    sh "codecept run -c tests unit --coverage-xml --coverage-html"
+ stage('Tests Runing') {
+    sh "codecept run -c /var/lib/jenkins/tests/ unit --coverage-xml --coverage-html"
 }
 
 
