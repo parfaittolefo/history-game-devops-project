@@ -23,7 +23,7 @@ node {
 //Run test 
 
  stage('Tests Runing') {
-    sh "cd /var/lib/jenkins/ && codecept run -c tests/ unit --coverage-xml --coverage-html"
+    sh "codecept run -c . unit --coverage-xml --coverage-html"
 }
 
 
