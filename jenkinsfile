@@ -28,7 +28,7 @@ node {
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
 
-    sh "codecept  --no-redirect run --steps  --html --debug"
+    sh "codecept  --no-redirect run --steps  --html "
    
     
 }
