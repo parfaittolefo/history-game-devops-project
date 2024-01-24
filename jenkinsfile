@@ -24,12 +24,25 @@ node {
 
  stage('Tests Runing') {
 
+
+    sh "composer update --lock --ignore-platform-reqs"
+    sh "composer install --optimize-autoloader --ignore-platform-reqs"
+
     sh "codecept  --no-redirect run --steps --xml --html --debug"
     //-c . unit --coverage-xml --coverage-html
     
 }
 
-
 //Publish report
+
+  stage('Reports') {
+        allure([
+            includeProperties: false,
+            jdk: '',
+            properties: [],
+            reportBuildPolicy: 'ALWAYS',
+            results: [[path: 'backend/tests/_output/allure-results']]
+        ])
+    }
 
 }
