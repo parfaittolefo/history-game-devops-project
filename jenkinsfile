@@ -23,7 +23,7 @@ node {
 //Run test 
 
  stage('Backend tests') {
-    sh "codecept run -c tests/ unit --coverage-xml --coverage-html"
+    sh "codecept run -c tests unit --coverage-xml --coverage-html"
 }
 
 
