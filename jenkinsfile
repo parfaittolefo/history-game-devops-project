@@ -48,4 +48,3 @@ node {
 }
 
 
-codecept  --no-redirect run Acceptance ExampleTest --steps --xml --html --debug
