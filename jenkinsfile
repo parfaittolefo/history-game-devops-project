@@ -28,8 +28,8 @@ node {
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
 
-    sh "codecept  --no-redirect run Unit ExampleTest --steps --xml --html --debug"
-    //-c . unit --coverage-xml --coverage-html
+    sh "codecept  --no-redirect run Unit ExampleTest --steps  --html --debug"
+   
     
 }
 
@@ -41,8 +41,11 @@ node {
             jdk: '',
             properties: [],
             reportBuildPolicy: 'ALWAYS',
-            results: [[path: 'backend/tests/_output/allure-results']]
+            results: [[path: 'tests/_output/allure-results']]
         ])
     }
 
 }
+
+
+codecept  --no-redirect run Acceptance ExampleTest --steps --xml --html --debug
