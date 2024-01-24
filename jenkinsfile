@@ -24,7 +24,7 @@ node {
 
  stage('Tests Runing') {
 
-    sh "codecept  --no-redirect run --steps --xml --html"
+    sh "codecept  --no-redirect run --steps --xml --html --debug"
     //-c . unit --coverage-xml --coverage-html
     
 }
