@@ -23,9 +23,9 @@ node {
 //Run test 
 
  stage('Tests Runing') {
-  sh "echo `pwd`"
-    sh "codecept run -c . unit --coverage-xml --coverage-html"
-    sh "echo `pwd`"
+
+    sh "codecept  --no-redirect run -c tests/ unit --coverage-xml --coverage-html"
+    
 }
 
 
