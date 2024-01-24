@@ -22,8 +22,8 @@ node {
 
 //Run test 
 
- stage('Run Test'){
-    sh 'mvn test -Dbrowser=localchrome'
+ stage('Backend tests') {
+    sh "codecept run -c backend/ unit --coverage-xml --coverage-html"
 }
 
 
