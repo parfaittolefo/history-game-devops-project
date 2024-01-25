@@ -33,7 +33,7 @@ node {
 
 //Publish report
 
-  stage('Generating Reports') {
+  /*stage('Generating Reports') {
         allure([
             includeProperties: false,
             jdk: '',
@@ -42,6 +42,7 @@ node {
             results: [[path: 'allure-results']]
         ])
     }
-}
+}*/
 
 
+stage('Generate Allure Report') { steps { script { ws('/var/lib/jenkins/workspace/history-game-devops-project-pipeline') { allure([ includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']] ]) } } } }
