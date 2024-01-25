@@ -24,7 +24,7 @@ node {
 
  stage('Tests Runing') {
 
-
+    sh "echo `pwd`"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
 
