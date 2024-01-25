@@ -24,7 +24,6 @@ node {
 
  stage('Tests Runing') {
 
-    sh "echo `pwd`"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
     sh "codecept  --no-redirect run --steps  --html "
@@ -40,7 +39,7 @@ node {
             jdk: '',
             properties: [],
             reportBuildPolicy: 'ALWAYS',
-            results: [[path: 'tests/_output/allure-results']]
+            results: [[path: 'allure-report']]
         ])
     }
 }
