@@ -23,7 +23,8 @@ node {
 //Run test 
 
  stage('Tests Runing') {
-
+    
+    sh "echo `pwd`"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
     sh "codecept  --no-redirect run --steps  --html "
@@ -34,7 +35,7 @@ node {
 //Publish report
 stage('Generate Allure Report') 
 { steps 
-  { script { ws('/var/lib/jenkins/workspace/history-game-devops-project-pipeline/') 
+  { script { ws('workspace/history-game-devops-project-pipeline/') 
     { allure([ includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']] ]) 
     } } } }
 
