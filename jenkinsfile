@@ -26,7 +26,7 @@ node {
     sh " echo `pwd`"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
-    sh "codecept  --no-redirect run --steps  --html "
+    sh "codecept  --no-redirect run"
    
     
 }
