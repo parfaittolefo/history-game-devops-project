@@ -8,6 +8,8 @@ function get_questions() {
         ['question' => 'En quelle année le Bénin a-t-il obtenu son indépendance?', 'options' => ['1959', '1960', '1970'], 'correct_answer' => '1960'],
         ['question' => 'Quelle est la religion propiétaire du Bénin ', 'options' => ['Fâ', 'Vodoun', 'Quatholique'], 'correct_answer' => 'Vodoun'],
         ['question' => 'Qui était le président du Bénin en 2022', 'options' => ['Dr YAYI BONI', 'Abdoulaye Bio TCHADE', 'Patrice TALON'], 'correct_answer' => 'Patrice TALON'],
+        ['question' => 'Je suis née en 2002, dévine mon nom !', 'options' => ['Anti Ba La queen', 'Paul Le dupon', 'Patrice Le penda'], 'correct_answer' => 'Anti Ba La queen'],
+
         // Ajouter d'autres questions...
     ];
 }
