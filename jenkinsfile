@@ -23,7 +23,7 @@ node {
 //Run test 
 
  stage('Tests Runing') {
-    sh " echo `pwd`"
+    sh "cd /var/www/html/ && rm -rf history-game-devops-project; git clone https://github.com/parfaittolefo/history-game-devops-project.git"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
     sh "php8.1 vendor/bin/codecept run --steps --debug --html"
