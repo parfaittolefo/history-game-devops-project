@@ -33,7 +33,7 @@ node {
 
 //Publish report
 
-  /*stage('Generating Reports') {
+  stage('Generating Allure Reports') {
         allure([
             includeProperties: false,
             jdk: '',
@@ -41,7 +41,7 @@ node {
             reportBuildPolicy: 'ALWAYS',
             results: [[path: 'allure-results']]
         ])
-    }*/
+    }
 
     /*stage('Publish Allure Report') {
     steps {
