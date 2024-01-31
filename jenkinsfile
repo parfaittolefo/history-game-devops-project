@@ -20,10 +20,15 @@ node {
   }
 
 
+// Depoeiment on test env
+ stage('Deploiement on test env)') {
+   sh 'sudo docker-compose up -d'
+  }
+
 //Run test 
 
  stage('Tests Runing') {
-    sh "cd /var/www/html/ && rm -rf history-game-devops-project; git clone https://github.com/parfaittolefo/history-game-devops-project.git"
+    //sh "cd /var/www/html/ && rm -rf history-game-devops-project; git clone https://github.com/parfaittolefo/history-game-devops-project.git"
     sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
     sh "php8.1 vendor/bin/codecept run --steps --debug --html"
@@ -42,17 +47,5 @@ node {
             results: [[path: 'tests/_output/allure-results']]
         ])
     }
-
-    /*stage('Publish Allure Report') {
-    steps {
-        allure([
-            includeProperties: false,
-            jdk: '',
-            properties: [],
-            reportBuildPolicy: 'ALWAYS',
-            results: [[path: '/tests/_output/allure-results']]
-        ])
-    }
-}*/
 
 }

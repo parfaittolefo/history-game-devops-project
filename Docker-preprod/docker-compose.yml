@@ -1,0 +1,11 @@
+---
+version: "2"
+services:
+    www:
+        build: .
+        ports:
+            - "80:8000"
+        volumes:
+            - ../src:/var/www/html/
+        networks:
+            - default
