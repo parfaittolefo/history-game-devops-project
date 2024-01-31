@@ -22,7 +22,8 @@ node {
 
 // Depoeiment on test env
  stage('Deploiement on test env)') {
-   sh 'sudo docker compose up -d'
+
+   sh 'cd Docker-preprod && sudo docker compose up -d'
   }
 
 //Run test 
