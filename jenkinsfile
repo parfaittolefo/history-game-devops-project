@@ -76,5 +76,12 @@ stage('Build & push prod docker image'){
 
           } 
         }
-   
+//Docker image scanning with trivy
+ stage("Trivy Image Scan") {
+             steps {
+                 script {
+	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image hack2k21/devops-thesis-project:v1 --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+                 }
+             }
+         }
 }
