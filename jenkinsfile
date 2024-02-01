@@ -6,9 +6,12 @@ node {
 
    //Environment 
     environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE = 'sqlite'
+      APP_NAME = "history-game-devops-project-prod"
+      RELEASE = "1.0.0"
+      DOCKER_USER = "hack2k21"
+      IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
     }
+
     /*environment  {
     APP_NAME = 'history-game-devops-project-prod'
     RELEASE = '1.0.0'
