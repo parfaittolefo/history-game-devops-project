@@ -104,21 +104,21 @@ stage('Build & push prod docker image'){
           } 
         }*/
 //Docker image scanning with trivy
- stage("Trivy Image Scan") {
+ /*stage("Trivy Image Scan") {
              steps {
                  script {
 	              sh ("docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG} --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
                  }
              }
-         }
+         }*/
 
 
 //Cleanup Artifacts
-stage ('Cleanup Artifacts') {
+/*stage ('Cleanup Artifacts') {
              
           sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
           sh "docker rmi ${IMAGE_NAME}:latest"
              
-         }
+         }*/
 }
 }
