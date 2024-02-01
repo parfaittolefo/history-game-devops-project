@@ -82,7 +82,7 @@ node {
 stage('Build & push prod docker image'){
 
             sh 'printenv'
-            echo "Database engine is ${DB_ENGINE}"
+            sh "Database engine is ${env.DB_ENGINE}"
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
 
