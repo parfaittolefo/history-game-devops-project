@@ -5,8 +5,11 @@ node {
   }
 
    //Environment 
-
-    environment  {
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+    /*environment  {
     APP_NAME = 'history-game-devops-project-prod'
     RELEASE = '1.0.0'
     DOCKER_USER = 'hack2k21'
@@ -15,7 +18,7 @@ node {
     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     IMAGE_REPOS = 'devops-thesis-project' // Modifié la syntaxe incorrecte de la variable
     // JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-}
+}*/
 
     /*environment {
 	    APP_NAME = "history-game-devops-project-prod"
