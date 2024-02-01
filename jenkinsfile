@@ -66,6 +66,13 @@ node {
 
 stage('Build docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
+
+           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
+            
+              sh 'docker login -u hack2k21 -p ${DOCKER_PASS}'
+              sh 'docker push hack2k21/history-game-devops-project-prod'
+
+          } 
         }
    
 }
