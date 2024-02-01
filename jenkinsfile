@@ -76,7 +76,7 @@ pipeline{
 
 //Build  prod docker image
 
-/*stage('Build & push prod docker image'){
+stage('Build & push prod docker image'){
 
             steps {
             sh "docker build -t ${IMAGE_NAME} ."
@@ -89,20 +89,8 @@ pipeline{
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               }
           } 
-        }*/
+        }
 
-/*stage('Build & push prod docker image'){
-            sh 'docker build -t history-game-devops-project-prod .'
-            sh 'docker logout'
-
-           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
-            
-              sh 'sudo docker login -u hack2k21 -p ${DOCKER_PASS}'
-              sh 'docker tag history-game-devops-project-prod:latest hack2k21/devops-thesis-project:v1'
-              sh 'sudo docker push hack2k21/devops-thesis-project:v1'
-
-          } 
-        }*/
 //Docker image scanning with trivy
  stage("Trivy Image Scan") {
              steps {
@@ -118,8 +106,9 @@ pipeline{
 //Cleanup Artifacts
 stage ('Cleanup Artifacts') {
              
-          steps{sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-          sh "docker rmi ${IMAGE_NAME}:latest"}
+          steps{
+            sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+            sh "docker rmi ${IMAGE_NAME}:latest"}
              
          }
 }
