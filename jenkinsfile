@@ -1,13 +1,7 @@
 pipeline{
   agent any
-  stages{
-    //Code pull from github
-    
-  stage('SCM (Get the source code from Git)') {
-    steps{checkout scm}
-  }
 
-   //Environment 
+  //Environment 
     environment {
       APP_NAME = "history-game-devops-project-prod"
       RELEASE = "1.0.0"
@@ -15,11 +9,20 @@ pipeline{
       IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
     }
 
+  stages{
+    //Code pull from github
+    
+  stage('SCM (Get the source code from Git)') {
+    steps{checkout scm}
+  }
+
+   
+
     //code analysis with sonarqube
-  stage('SonarQube Analysis') {
-    steps{def scannerHome = tool 'SonarScanner';
+    stage('SonarQube Analysis') {
+   def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
+      steps{ sh "${scannerHome}/bin/sonar-scanner"
     }}
   }
     
