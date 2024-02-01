@@ -84,12 +84,13 @@ node {
 stage("Set bash env var")
 {
   sh "export APP_NAME='history-game-devops-project-prod'"
-  sh "RELEASE='1.0.0'"
-  sh "DOCKER_USER = 'hack2k21'"
-      /*      DOCKER_PASS = 'dockerhub'
-            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-            IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-            IMAGE_REPOS = "${devops-thesis-project}"*/
+  sh "export RELEASE='1.0.0'"
+  sh "export DOCKER_USER='hack2k21'"
+  sh "export IMAGE_NAME =$DOCKER_USER/$APP_NAME"
+  sh "export IMAGE_TAG = $RELEASE-$BUILD_NUMBER"
+  sh "export IMAGE_REPOS ='devops-thesis-project'"
+
+  sh 'printenv'
 }
 //Build  prod docker image
 
@@ -98,7 +99,7 @@ stage('Build & push prod docker image'){
 
         
             
-            sh "echo APP_NAME $APP_NAME and ${env.BUILD_NUMBER}"
+            sh "echo APP_NAME $APP_NAME and BUILD_NUMBER $BUILD_NUMBER"
             //sh "echo APP_NAME 2 $APP_NAME"
             sh 'printenv'
         
