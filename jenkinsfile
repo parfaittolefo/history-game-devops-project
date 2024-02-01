@@ -80,6 +80,17 @@ node {
         ])
     }
 
+// Set env var in bash
+stage("Set bash env var")
+{
+  sh "export APP_NAME='history-game-devops-project-prod'"
+  sh "RELEASE='1.0.0'"
+  sh "DOCKER_USER = 'hack2k21'"
+      /*      DOCKER_PASS = 'dockerhub'
+            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+            IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+            IMAGE_REPOS = "${devops-thesis-project}"*/
+}
 //Build  prod docker image
 
 stage('Build & push prod docker image'){
