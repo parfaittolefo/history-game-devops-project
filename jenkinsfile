@@ -1,4 +1,4 @@
-pipeline  {
+pipeline{
     //Code pull from github
   /*stage('SCM (Get the source code from Git)') {
     checkout scm
