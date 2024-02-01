@@ -66,11 +66,13 @@ node {
 
 stage('Build & push prod docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
+            sh 'docker logout'
 
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh 'sudo docker login -u hack2k21 -p ${DOCKER_PASS}'
-              sh 'docker push hack2k21/devops-thesis-project:history-game-devops-project-prod'
+              sh 'docker tag history-game-devops-project-prod:latest hack2k21/devops-thesis-project:v1'
+              sh 'sudo docker pushhack2k21/devops-thesis-project:v1'
 
           } 
         }
