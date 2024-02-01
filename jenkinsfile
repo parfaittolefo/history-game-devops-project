@@ -7,6 +7,7 @@ pipeline{
       RELEASE = "1.0.0"
       DOCKER_USER = "hack2k21"
       IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
+      IMAGE_REPOS = "devops-thesis-project"
     }
 
   stages{
