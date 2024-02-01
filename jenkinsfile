@@ -65,11 +65,7 @@ node {
 //Build  prod docker image
 
 stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t history-game-devops-project-prod .'
-                }
-            }
+            sh 'docker build -t history-game-devops-project-prod .'
         }
    
 }
