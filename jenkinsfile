@@ -6,7 +6,7 @@ pipeline{
       APP_NAME = "history-game-devops-project-prod"
       RELEASE = "1.0.0"
       DOCKER_USER = "hack2k21"
-      IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
+      IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
       IMAGE_REPOS = "devops-thesis-project"
     }
 
@@ -75,7 +75,7 @@ pipeline{
 
 //Build  prod docker image
 
-stage('Build & push prod docker image'){
+/*stage('Build & push prod docker image'){
 
             steps {
             sh "docker build -t ${IMAGE_NAME} ."
@@ -88,7 +88,22 @@ stage('Build & push prod docker image'){
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               }
           } 
-        }
+        }*/
+
+        stage("Build & Push Docker Image") {
+             steps {
+                 script {
+                     docker.withRegistry('',DOCKER_PASS) {
+                         docker_image = docker.build "${IMAGE_NAME}"
+                     }
+                     docker.withRegistry('',DOCKER_PASS) {
+                         docker_image.push("${IMAGE_TAG}")
+                         docker_image.push('latest')
+                     }
+                 }
+             }
+         }
+
 
 /*stage('Build & push prod docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
