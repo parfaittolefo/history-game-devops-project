@@ -82,12 +82,10 @@ node {
 stage('Build & push prod docker image'){
 
 
-         environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
+        
             sh 'printenv'
-            sh "Database engine is ${env.DB_ENGINE}"
+            echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+            echo "DB ${env.DB_ENGINE} "
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
 
