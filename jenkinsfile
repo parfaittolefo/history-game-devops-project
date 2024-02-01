@@ -77,7 +77,7 @@ node {
 //Build  prod docker image
 
 stage('Build & push prod docker image'){
-            sh "docker build -t ${IMAGE_NAME} ."
+            sh 'docker build -t ${IMAGE_NAME} .'
             sh "docker logout"
 
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
