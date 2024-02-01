@@ -12,9 +12,9 @@ pipeline{
   stages{
     //Code pull from github
     
-  stage('SCM (Get the source code from Git)') {
+  /*stage('SCM (Get the source code from Git)') {
     steps{checkout scm}
-  }
+  }*/
 
    
 
@@ -31,14 +31,6 @@ pipeline{
                     sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
-            
-      /*withSonarQubeEnv() {
-      sh "${scannerHome}/bin/sonar-scanner"
-    }*/
-
-
-
-
     }
   }
     
@@ -85,16 +77,15 @@ pipeline{
 stage('Build & push prod docker image'){
 
             steps {
-        
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
 
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-              sh "docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+              sh "sudo docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
-}
+              }
           } 
         }
 
