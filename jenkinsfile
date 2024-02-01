@@ -20,10 +20,12 @@ pipeline{
 
     //code analysis with sonarqube
     stage('SonarQube Analysis') {
-   def scannerHome = tool 'SonarScanner';
-    withSonarQubeEnv() {
+
+    def scannerHome = tool 'SonarScanner';
+    steps
+    {withSonarQubeEnv() {
       sh "${scannerHome}/bin/sonar-scanner"
-    }
+    }}
   }
     
     // Code vulnerabily scan with OWASP ZAP TOP 10
