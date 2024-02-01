@@ -1,5 +1,8 @@
 pipeline{
+  agent any
+  stages{
     //Code pull from github
+    
   /*stage('SCM (Get the source code from Git)') {
     checkout scm
   }
@@ -115,4 +118,5 @@ stage ('Cleanup Artifacts') {
           sh "docker rmi ${IMAGE_NAME}:latest"
              
          }
+}
 }
