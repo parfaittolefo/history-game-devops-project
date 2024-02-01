@@ -84,8 +84,9 @@ stage('Build & push prod docker image'){
 
         
             sh 'printenv'
-            echo "Printing $DISABLE_AUTH"
-            echo "DB $DB_ENGINE"
+            echo "Printing ${DISABLE_AUTH}"
+            echo "DB 1 $DB_ENGINE"
+            echo "DB 2 ${env.DB_ENGINE}"
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
 
