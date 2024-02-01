@@ -6,8 +6,8 @@ node {
 
    //Environment 
     environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
+        env.DISABLE_AUTH = 'true'
+        env.DB_ENGINE    = 'sqlite'
     }
     /*environment  {
     APP_NAME = 'history-game-devops-project-prod'
