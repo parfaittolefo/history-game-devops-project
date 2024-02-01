@@ -62,13 +62,14 @@ node {
 
 stage('Build & push prod docker image'){
 
-            environment {
+              environment {
               APP_NAME = "history-game-devops-project-prod"
               RELEASE = "1.0.0"
               DOCKER_USER = "hack2k21"
               IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
           }
- 
+
+            sh 'printenv'
             sh "echo APP_NAME ${APP_NAME}"
             //sh "echo APP_NAME 2 $APP_NAME"
             sh 'printenv'
