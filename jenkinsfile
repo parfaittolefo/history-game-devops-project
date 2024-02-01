@@ -4,7 +4,7 @@ node {
     checkout scm
   }
 
-   //Environment 
+   /*//Environment 
 
     environment {
 	    APP_NAME = "history-game-devops-project-pipeline"
@@ -14,7 +14,7 @@ node {
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-    }
+    }*/
 
 
     //code analysis with sonarqube
@@ -70,7 +70,7 @@ stage('Build & push prod docker image'){
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh 'docker login -u hack2k21 -p ${DOCKER_PASS}'
-              sh 'docker push history-game-devops-project-prod'
+              sh 'docker push devops-thesis-project/history-game-devops-project-prod'
 
           } 
         }
