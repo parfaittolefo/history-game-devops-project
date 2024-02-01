@@ -78,9 +78,9 @@ node {
 
 stage('Build & push prod docker image'){
 
-            sh "echo $IMAGE_TAG"
-            sh "echo $IMAGE_NAME"
-            sh "docker build -t ${IMAGE_NAME} ."
+            sh "echo ${env.IMAGE_TAG}"
+            sh "echo ${env.IMAGE_NAME}"
+            sh "docker build -t ${env.IMAGE_NAME} ."
             sh "docker logout"
 
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
