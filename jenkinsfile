@@ -72,6 +72,8 @@ stage('Build & push prod docker image'){
               IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
           }
 
+            steps {
+              
             sh 'printenv'
             sh "echo APP_NAME ${APP_NAME}"
             //sh "echo APP_NAME 2 $APP_NAME"
@@ -85,7 +87,7 @@ stage('Build & push prod docker image'){
               sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
               sh "docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
-
+}
           } 
         }
 
