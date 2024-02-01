@@ -84,8 +84,8 @@ stage('Build & push prod docker image'){
 
         
             sh 'printenv'
-            echo "Printing ${APP_NAME}"
-            echo "DB 1 $DB_ENGINE"
+            echo "APP_NAME ${APP_NAME}"
+            echo "APP_NAME 2 $APP_NAME"
             echo "DB 2 ${env.DB_ENGINE}"
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
