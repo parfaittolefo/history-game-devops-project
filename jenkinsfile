@@ -1,6 +1,6 @@
 node {
     //Code pull from github
-  stage('SCM (Get the source code from Git)') {
+  /*stage('SCM (Get the source code from Git)') {
     checkout scm
   }
 
@@ -11,29 +11,6 @@ node {
       DOCKER_USER = "hack2k21"
       IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
     }
-
-    /*environment  {
-    APP_NAME = 'history-game-devops-project-prod'
-    RELEASE = '1.0.0'
-    DOCKER_USER = 'hack2k21'
-    // Supprimé DOCKER_PASS car il est commenté et n'est pas utilisé dans le script
-    IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
-    IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-    IMAGE_REPOS = 'devops-thesis-project' // Modifié la syntaxe incorrecte de la variable
-    // JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-}*/
-
-    /*environment {
-	    APP_NAME = "history-game-devops-project-prod"
-            RELEASE = "1.0.0"
-            DOCKER_USER = "hack2k21"
-      //      DOCKER_PASS = 'dockerhub'
-            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-            IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-            IMAGE_REPOS = "${devops-thesis-project}"
-	    //JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-    }*/
-
 
     //code analysis with sonarqube
   stage('SonarQube Analysis') {
@@ -79,7 +56,7 @@ node {
             results: [[path: 'tests/_output/allure-results']]
         ])
     }
-
+*/
 // Set env var in bash
 stage("Set bash env var")
 {
