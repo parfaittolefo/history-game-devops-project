@@ -8,6 +8,7 @@ pipeline{
       DOCKER_USER = "hack2k21"
       IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
       IMAGE_REPOS = "devops-thesis-project"
+      IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
 
   stages{
@@ -75,7 +76,7 @@ pipeline{
 
 //Build  prod docker image
 
-/*stage('Build & push prod docker image'){
+stage('Build & push prod docker image'){
 
             steps {
             sh "docker build -t ${IMAGE_NAME} ."
@@ -84,26 +85,11 @@ pipeline{
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-              sh "sudo docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+              sh " docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               }
           } 
-        }*/
-
-        stage("Build & Push Docker Image") {
-             steps {
-                 script {
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image = docker.build "${IMAGE_NAME}"
-                     }
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image.push("${IMAGE_TAG}")
-                         docker_image.push('latest')
-                     }
-                 }
-             }
-         }
-
+        }
 
 /*stage('Build & push prod docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
