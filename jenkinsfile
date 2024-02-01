@@ -76,7 +76,7 @@ pipeline{
 
 //Build  prod docker image
 
-stage('Build & push prod docker image'){
+/*stage('Build & push prod docker image'){
 
             steps {
             sh "docker build -t ${IMAGE_NAME} ."
@@ -89,7 +89,7 @@ stage('Build & push prod docker image'){
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               }
           } 
-        }
+        }*/
 
 /*stage('Build & push prod docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
