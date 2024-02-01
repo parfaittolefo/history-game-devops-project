@@ -66,14 +66,14 @@ node {
 //Build  prod docker image
 
 stage('Build & push prod docker image'){
-            sh 'docker build -t ${IMAGE_NAME} .'
+            sh "docker build -t ${IMAGE_NAME} ."
             sh 'docker logout'
 
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
-              sh 'sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}'
-              sh 'docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}'
-              sh 'sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}'
+              sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
+              sh "docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+              sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
 
           } 
         }
@@ -94,7 +94,7 @@ stage('Build & push prod docker image'){
  stage("Trivy Image Scan") {
              steps {
                  script {
-	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG} --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+	              sh ("docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG} --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
                  }
              }
          }
