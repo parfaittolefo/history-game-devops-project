@@ -81,6 +81,11 @@ node {
 
 stage('Build & push prod docker image'){
 
+
+         environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
             sh 'printenv'
             sh "Database engine is ${env.DB_ENGINE}"
             sh "docker build -t ${IMAGE_NAME} ."
