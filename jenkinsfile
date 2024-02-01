@@ -87,8 +87,8 @@ stage('Build & push prod docker image'){
 
         
             
-            sh "echo APP_NAME ${APP_NAME}"
-            sh "echo APP_NAME 2 $APP_NAME"
+            sh "echo APP_NAME $APP_NAME and ${env.BUILD_NUMBER}"
+            //sh "echo APP_NAME 2 $APP_NAME"
             sh 'printenv'
         
             sh "docker build -t ${IMAGE_NAME} ."
