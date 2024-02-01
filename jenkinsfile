@@ -70,7 +70,7 @@ stage('Build & push prod docker image'){
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh 'docker login -u hack2k21 -p ${DOCKER_PASS}'
-              sh 'docker logout && docker push history-game-devops-project-prod/proDocker'
+              sh 'docker logout && docker push history-game-devops-project-prod'
 
           } 
         }
