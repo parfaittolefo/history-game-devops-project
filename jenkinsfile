@@ -7,7 +7,7 @@ node {
    //Environment 
     environment {
         DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
+        env.DB_ENGINE    = 'sqlite'
     }
     /*environment  {
     APP_NAME = 'history-game-devops-project-prod'
@@ -85,7 +85,7 @@ stage('Build & push prod docker image'){
         
             sh 'printenv'
             echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-            echo "DB ${env.DB_ENGINE} "
+            echo "DB $DB_ENGINE "
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
 
