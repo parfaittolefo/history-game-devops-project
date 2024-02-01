@@ -72,7 +72,7 @@ stage('Build & push prod docker image'){
             
               sh 'sudo docker login -u hack2k21 -p ${DOCKER_PASS}'
               sh 'docker tag history-game-devops-project-prod:latest hack2k21/devops-thesis-project:v1'
-              sh 'sudo docker pushhack2k21/devops-thesis-project:v1'
+              sh 'sudo docker push hack2k21/devops-thesis-project:v1'
 
           } 
         }
