@@ -3,8 +3,8 @@ pipeline{
   stages{
     //Code pull from github
     
-  /*stage('SCM (Get the source code from Git)') {
-    checkout scm
+  stage('SCM (Get the source code from Git)') {
+    steps{checkout scm}
   }
 
    //Environment 
@@ -17,33 +17,33 @@ pipeline{
 
     //code analysis with sonarqube
   stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarScanner';
+    steps{def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv() {
       sh "${scannerHome}/bin/sonar-scanner"
-    }
+    }}
   }
     
     // Code vulnerabily scan with OWASP ZAP TOP 10
 
      stage('Dependancy-Vuln check OWASP') {
 
-    dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWASP-ZAP-DP'
+    steps{dependencyCheck additionalArguments: '--format=HTML', odcInstallation: 'OWASP-ZAP-DP'}
   }
 
 
 // Depoeiment on test env
  stage('Deploiement on test env)') {
 
-   sh 'cd Docker-preprod && sudo docker compose up -d'
+   steps{sh 'cd Docker-preprod && sudo docker compose up -d'}
   }
 
 //Run test 
 
  stage('Tests Runing') {
     //sh "cd /var/www/html/ && rm -rf history-game-devops-project; git clone https://github.com/parfaittolefo/history-game-devops-project.git"
-    sh "composer update --lock --ignore-platform-reqs"
+    steps{sh "composer update --lock --ignore-platform-reqs"
     sh "composer install --optimize-autoloader --ignore-platform-reqs"
-    sh "php8.1 vendor/bin/codecept run --steps --debug --html"
+    sh "php8.1 vendor/bin/codecept run --steps --debug --html"}
    
     
 }
@@ -51,33 +51,21 @@ pipeline{
 //Publish report
 
   stage('Generating Allure Reports') {
-        allure([
+        steps{allure([
             includeProperties: false,
             jdk: '',
             properties: [],
             reportBuildPolicy: 'ALWAYS',
             results: [[path: 'tests/_output/allure-results']]
-        ])
+        ])}
     }
-*/
+
 
 //Build  prod docker image
 
 stage('Build & push prod docker image'){
 
-              environment {
-              APP_NAME = "history-game-devops-project-prod"
-              RELEASE = "1.0.0"
-              DOCKER_USER = "hack2k21"
-              IMAGE_NAME = "hack2k21/history-game-devops-project-prod"
-          }
-
             steps {
-              
-            sh 'printenv'
-            sh "echo APP_NAME ${APP_NAME}"
-            //sh "echo APP_NAME 2 $APP_NAME"
-            sh 'printenv'
         
             sh "docker build -t ${IMAGE_NAME} ."
             sh "docker logout"
@@ -104,21 +92,21 @@ stage('Build & push prod docker image'){
           } 
         }*/
 //Docker image scanning with trivy
- /*stage("Trivy Image Scan") {
+ stage("Trivy Image Scan") {
              steps {
                  script {
 	              sh ("docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG} --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
                  }
              }
-         }*/
+         }
 
 
 //Cleanup Artifacts
-/*stage ('Cleanup Artifacts') {
+stage ('Cleanup Artifacts') {
              
-          sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-          sh "docker rmi ${IMAGE_NAME}:latest"
+          steps{sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+          sh "docker rmi ${IMAGE_NAME}:latest"}
              
-         }*/
+         }
 }
 }
