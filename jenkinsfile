@@ -4,17 +4,18 @@ node {
     checkout scm
   }
 
-   /*//Environment 
+   //Environment 
 
     environment {
-	    APP_NAME = "history-game-devops-project-pipeline"
+	    APP_NAME = "history-game-devops-project-prod"
             RELEASE = "1.0.0"
             DOCKER_USER = "hack2k21"
             DOCKER_PASS = 'dockerhub'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-    }*/
+            IMAGE_REPOS = "${devops-thesis-project}"
+	    //JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+    }
 
 
     //code analysis with sonarqube
@@ -65,6 +66,19 @@ node {
 //Build  prod docker image
 
 stage('Build & push prod docker image'){
+            sh 'docker build -t ${IMAGE_NAME} .'
+            sh 'docker logout'
+
+           withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
+            
+              sh 'sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}'
+              sh 'docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}'
+              sh 'sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}'
+
+          } 
+        }
+
+/*stage('Build & push prod docker image'){
             sh 'docker build -t history-game-devops-project-prod .'
             sh 'docker logout'
 
@@ -75,13 +89,22 @@ stage('Build & push prod docker image'){
               sh 'sudo docker push hack2k21/devops-thesis-project:v1'
 
           } 
-        }
+        }*/
 //Docker image scanning with trivy
  stage("Trivy Image Scan") {
              steps {
                  script {
-	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image hack2k21/devops-thesis-project:v1 --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock trivy image ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG} --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
                  }
              }
+         }
+
+
+//Cleanup Artifacts
+stage ('Cleanup Artifacts') {
+             
+          sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+          sh "docker rmi ${IMAGE_NAME}:latest"
+             
          }
 }
