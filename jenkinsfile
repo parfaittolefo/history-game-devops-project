@@ -87,6 +87,7 @@ stage('Build & push prod docker image'){
               sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
               sh " docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
               sh "sudo docker push ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+              sh "sudo docker push ${IMAGE_NAME}:latest"
               }
           } 
         }
@@ -112,4 +113,13 @@ stage ('Cleanup Artifacts') {
              
          }
 }
+
+   /*stage('Deploying App to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
+        }
+      }
+    }*/
 }
+
