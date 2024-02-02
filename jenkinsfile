@@ -7,7 +7,7 @@ pipeline{
       RELEASE = "1.0.0"
       DOCKER_USER = "hack2k21"
       IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-      IMAGE_REPOS = "devops-thesis-project"
+      //IMAGE_REPOS = "devops-thesis-project"
       IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
 
@@ -85,7 +85,7 @@ stage('Build & push prod docker image'){
            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]) {
             
               sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-              sh " docker tag ${IMAGE_NAME}:latest ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+              sh "docker tag ${IMAGE_NAME}:latest  ${IMAGE_NAME}:${IMAGE_TAG}"
               sh "sudo docker push ${IMAGE_NAME}:${IMAGE_TAG}"
               sh "sudo docker push ${IMAGE_NAME}:latest"
               }
@@ -98,7 +98,7 @@ stage('Build & push prod docker image'){
               withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]){
                  script {
                     sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-	                  sh ("trivy image ${DOCKER_USER}/${IMAGE_REPOS}:1.0.0-187 --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
+	                  sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
                  }}
              }
          }
@@ -108,7 +108,7 @@ stage('Build & push prod docker image'){
 stage ('Cleanup Artifacts') {
              
           steps{
-            sh "docker rmi ${DOCKER_USER}/${IMAGE_REPOS}:${IMAGE_TAG}"
+            sh "docker rmi  ${IMAGE_NAME}:${IMAGE_TAG}"
             sh "docker rmi ${IMAGE_NAME}:latest"}
              
          }
