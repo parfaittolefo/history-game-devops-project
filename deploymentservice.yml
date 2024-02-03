@@ -33,9 +33,9 @@ spec:
   selector:
     app: history-game-devops-project-prod 
   type: LoadBalancer
-  loadBalancerIP: 4.156.139.171
+  loadBalancerIP: 203.0.113.10
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 80
+    nodePort: 31110
