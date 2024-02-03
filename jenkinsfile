@@ -112,7 +112,7 @@ stage ('Cleanup Artifacts') {
             sh "docker rmi ${IMAGE_NAME}:latest"}
              
          }
-}
+
 
    stage('Deploying App to Kubernetes') {
       steps {
@@ -121,5 +121,6 @@ stage ('Cleanup Artifacts') {
         }
       }
     }
+}
 }
 
