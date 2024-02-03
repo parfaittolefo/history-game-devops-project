@@ -1,0 +1,40 @@
+
+   
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: history-game-devops-project-prod-deployment
+  labels:
+    app: history-game-devops-project-prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: history-game-devops-project-prod
+  template:
+    metadata:
+      labels:
+        app: history-game-devops-project-prod 
+    spec:
+      containers:
+      - name: history-game-devops-project-prod-server
+        image: hack2k21/history-game-devops-project-prod
+        ports:
+        - containerPort: 80
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: history-game-devops-project-prod-service
+spec:
+  selector:
+    app: history-game-devops-project-prod 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110
