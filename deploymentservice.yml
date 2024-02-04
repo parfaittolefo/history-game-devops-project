@@ -32,10 +32,11 @@ metadata:
 spec:
   selector:
     app: history-game-devops-project-prod 
-  type: LoadBalancer
+  type: NodePort
   loadBalancerIP: 4.156.139.171
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
     nodePort: 31110
+  
