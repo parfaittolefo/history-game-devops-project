@@ -18,7 +18,7 @@ pipeline{
     steps{checkout scm}
   }*/
 
-   
+   /*
 
     //code analysis with sonarqube
     stage('SonarQube Analysis') {
@@ -112,7 +112,7 @@ stage ('Cleanup Artifacts') {
             sh "docker rmi ${IMAGE_NAME}:latest"}
              
          }
-
+*/
 
    stage('Deploying App to Kubernetes') {
       steps {
