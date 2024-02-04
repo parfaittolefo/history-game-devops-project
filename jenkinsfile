@@ -123,12 +123,13 @@ stage ('Cleanup Artifacts') {
     }*/
 
     stage('Deploying App to Prod env') {
-      steps {
+      
         sshagent(['ProdVmLogin']) {
-          sh "docker pull hack2k21/history-game-devops-project-prod:latest"
-          sh "docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
+          //sh "docker pull hack2k21/history-game-devops-project-prod:latest"
+          //sh "docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
+          sh "hostaname"
     // some block
-          }
+          
       }
     }
 }
