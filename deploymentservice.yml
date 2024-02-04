@@ -25,20 +25,17 @@ spec:
         
 ---
 
+
+
 apiVersion: v1
 kind: Service
 metadata:
   name: history-game-devops-project-prod-service
 spec:
   selector:
-    app: history-game-devops-project-prod
-  type: LoadBalancer
-  loadBalancerIP: 20.121.51.16
+    app:  history-game-devops-project-prod
   ports:
-  - name: http
-    port: 80
-    targetPort: 80
-    protocol: TCP
-  externalIPs:
-    - 20.121.51.16
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
   
