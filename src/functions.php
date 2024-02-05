@@ -10,7 +10,6 @@ function get_questions() {
         ['question' => 'Qui était le président du Bénin en 2022', 'options' => ['Dr YAYI BONI', 'Abdoulaye Bio TCHADE', 'Patrice TALON'], 'correct_answer' => 'Patrice TALON'],
         ['question' => 'Je suis née en 2002, dévine mon nom !', 'options' => ['Anti Ba La queen', 'Paul Le dupon', 'Patrice Le penda'], 'correct_answer' => 'Anti Ba La queen'],
         ['question' => "Quel est le plus grand parc national du Bénin ?",'options' => ["Parc national de la Pendjari", "Parc national de la Lama", "Parc national de la W", "Parc national de la Pendjari"],'correct_answer' => "Parc national de la Pendjari"],
-        ['question' => "Quel fleuve constitue une partie de la frontière entre le Bénin et le Nigeria ?", 'options' => ["Le Niger", "Le Zou", "Le Mono", "Le Niger"], 'correct_answer' => "Le Niger"]
 
         // Ajouter d'autres questions...
     ];
