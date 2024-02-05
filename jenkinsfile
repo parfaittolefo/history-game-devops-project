@@ -122,7 +122,25 @@ stage ('Cleanup Artifacts') {
       }
     }*/
 
+
     stage('Deploying App to Prod env') {
+            steps {
+                script {
+                    def remote = [:]
+                    remote.name = 'K8smaster'
+                    remote.host = '172.212.92.22'
+                    remote.user = 'level'
+                    remote.password = 'Level@DevOps'
+                    remote.allowAnyHosts = true
+
+                    sshCommand remote: remote, command: "Hostane"
+                }
+            }
+        }
+
+
+
+   /* stage('Deploying App to Prod env') {
       steps {
         sshagent(['ProdVmLogin']) {
           //sh "docker pull hack2k21/history-game-devops-project-prod:latest"
@@ -131,7 +149,7 @@ stage ('Cleanup Artifacts') {
     // some block
           }
       }
-    }
+    }*/
 }
 }
 
