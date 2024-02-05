@@ -135,7 +135,7 @@ stage ('Cleanup Artifacts') {
                     remote.allowAnyHosts = true
 
                     sshCommand remote: remote, command: "sudo docker pull hack2k21/history-game-devops-project-prod:latest"
-                    sshCommand remote: remote, command: "./stop_service.sh"
+                    sshCommand remote: remote, command: "sudo ./stop_service.sh"
                     sshCommand remote: remote, command: "sudo docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
                     //sshCommand remote: remote, command: "docker rmi -f hack2k21/history-game-devops-project-prod:latest 2> /dev/null"
 
