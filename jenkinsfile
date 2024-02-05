@@ -133,23 +133,13 @@ stage ('Cleanup Artifacts') {
                     remote.password = 'Level@DevOps'
                     remote.allowAnyHosts = true
 
-                    sshCommand remote: remote, command: "hostname"
+                    sshCommand remote: remote, command: "docker pull hack2k21/history-game-devops-project-prod:latest"
+                    sshCommand remote: remote, command: "docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
+                   // sshCommand remote: remote, command: "docker pull hack2k21/history-game-devops-project-prod:latest"
                 }
             }
         }
 
-
-
-   /* stage('Deploying App to Prod env') {
-      steps {
-        sshagent(['ProdVmLogin']) {
-          //sh "docker pull hack2k21/history-game-devops-project-prod:latest"
-         // sh "docker run -d -p 80:80hack2k21/history-game-devops-project-prod:latest"
-         sh "hostname"
-    // some block
-          }
-      }
-    }*/
 }
 }
 
