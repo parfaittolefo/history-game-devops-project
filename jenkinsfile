@@ -133,7 +133,7 @@ stage ('Cleanup Artifacts') {
                     remote.password = 'Level@DevOps'
                     remote.allowAnyHosts = true
 
-                    sshCommand remote: remote, command: "Hostane"
+                    sshCommand remote: remote, command: "hostane"
                 }
             }
         }
