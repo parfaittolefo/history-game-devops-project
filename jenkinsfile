@@ -127,6 +127,7 @@ stage ('Cleanup Artifacts') {
             steps {
                 script {
                     def remote = [:]
+                    remote.sudo = true
                     remote.name = 'K8smaster'
                     remote.host = '172.212.92.22'
                     remote.user = 'level'
