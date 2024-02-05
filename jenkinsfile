@@ -135,9 +135,9 @@ stage ('Cleanup Artifacts') {
                     remote.allowAnyHosts = true
 
                     sshCommand remote: remote, command: "sudo docker pull hack2k21/history-game-devops-project-prod:latest"
-                    sshCommand remote: remote, command: 'docker ps -q --filter "ancestor=$(docker images -q hack2k21/history-game-devops-project-prod:latest)" | xargs docker stop 2> /dev/null'
+                    sshCommand remote: remote, command: "docker ps -q --filter ancestor=$(docker images -q hack2k21/history-game-devops-project-prod:latest) | xargs docker stop 2> /dev/null"
                     sshCommand remote: remote, command: "sudo docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
-                    //sshCommand remote: remote, command: "sudo docker pull hack2k21/history-game-devops-project-prod:latest 2> /dev/null"
+                    //sshCommand remote: remote, command: "docker rmi -f hack2k21/history-game-devops-project-prod:latest 2> /dev/null"
 
                 }
             }
