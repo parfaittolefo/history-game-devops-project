@@ -134,8 +134,8 @@ stage ('Cleanup Artifacts') {
                     remote.password = 'Level@DevOps'
                     remote.allowAnyHosts = true
 
-                    sshCommand remote: remote, command: "docker pull hack2k21/history-game-devops-project-prod:latest"
-                    sshCommand remote: remote, command: "docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
+                    sshCommand remote: remote, command: "sudo docker pull hack2k21/history-game-devops-project-prod:latest"
+                    sshCommand remote: remote, command: "sudo docker run -d -p 80:80 hack2k21/history-game-devops-project-prod:latest"
                    // sshCommand remote: remote, command: "docker pull hack2k21/history-game-devops-project-prod:latest"
                 }
             }
