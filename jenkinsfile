@@ -21,7 +21,7 @@ pipeline{
    
 
     //code analysis with sonarqube
-    stage('SonarQube Analysis') {
+    /*stage('SonarQube Analysis') {
 
     //def scannerHome = tool 'SonarScanner';
     steps
@@ -91,21 +91,25 @@ stage('Build & push prod docker image'){
               }
           } 
         }
-
+*/
 //Docker image scanning with trivy
  stage("Trivy Image Scan") {
              steps {
               withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOKER_USER')]){
                  script {
                     sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-	                  sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
+	                  //sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
+                    sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format template --template '@/usr/local/share/trivy/templates/html.tpl' -o Trivy_Report.html golang:1.12-alpine")
                  }}
              }
          }
 
+         //$ trivy image --format template --template '@/usr/local/share/trivy/templates/html.tpl' -o report.html golang:1.12-alpine
+
+
 
 //Cleanup Artifacts
-stage ('Cleanup Artifacts') {
+/*stage ('Cleanup Artifacts') {
              
           steps{
             sh "docker rmi  ${IMAGE_NAME}:${IMAGE_TAG}"
@@ -120,7 +124,7 @@ stage ('Cleanup Artifacts') {
           kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
         }
       }
-    }*/
+    }
 
 
     stage('Deploying App to Prod env') {
@@ -141,7 +145,7 @@ stage ('Cleanup Artifacts') {
 
                 }
             }
-        }
+        }*/
 
 }
 }
