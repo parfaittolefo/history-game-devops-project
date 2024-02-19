@@ -21,7 +21,7 @@ pipeline{
    
 
     //code analysis with sonarqube
-    /*stage('SonarQube Analysis') {
+    /stage('SonarQube Analysis') {
 
     //def scannerHome = tool 'SonarScanner';
     steps
@@ -91,7 +91,7 @@ stage('Build & push prod docker image'){
               }
           } 
         }
-*/
+
 //Docker image scanning with trivy
  stage("Trivy Image Scan") {
              steps {
@@ -109,7 +109,7 @@ stage('Build & push prod docker image'){
 
 
 //Cleanup Artifacts
-/*stage ('Cleanup Artifacts') {
+stage ('Cleanup Artifacts') {
              
           steps{
             sh "docker rmi  ${IMAGE_NAME}:${IMAGE_TAG}"
@@ -124,7 +124,7 @@ stage('Build & push prod docker image'){
           kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
         }
       }
-    }
+    }*/
 
 
     stage('Deploying App to Prod env') {
@@ -145,7 +145,7 @@ stage('Build & push prod docker image'){
 
                 }
             }
-        }*/
+        }
 
 }
 }
