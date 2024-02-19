@@ -99,7 +99,7 @@ stage('Build & push prod docker image'){
                  script {
                     sh "sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
 	                  //sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt")
-                    sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format template --template '@/usr/local/share/trivy/templates/html.tpl' -o Trivy_Report.html golang:1.12-alpine")
+                    sh ("trivy image ${IMAGE_NAME}:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format template --template @/usr/local/share/trivy/templates/html.tpl -o Trivy_Report.html")
                  }}
              }
          }
