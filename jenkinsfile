@@ -12,14 +12,7 @@ pipeline{
     }
 
   stages{
-    //Code pull from github
-    
-  /*stage('SCM (Get the source code from Git)') {
-    steps{checkout scm}
-  }*/
-
    
-
     //code analysis with sonarqube
     stage('SonarQube Analysis') {
 
